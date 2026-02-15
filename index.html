@@ -3,68 +3,176 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Choose Your Language Learning Offer</title>
+  <title>Choose an Offer</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 24px; background: #f6f7fb; }
-    .wrap { max-width: 900px; margin: 0 auto; }
-    h1 { margin: 0 0 8px; }
-    p { color: #444; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 20px; }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 24px; background: #f6f7fb; color:#111; }
+    .wrap { max-width: 980px; margin: 0 auto; }
+    header { margin-bottom: 18px; }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    p { margin: 0; color: #444; line-height: 1.4; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 18px; }
     .card { background: white; border-radius: 14px; padding: 18px; box-shadow: 0 6px 18px rgba(0,0,0,.08); }
-    .price { font-size: 26px; font-weight: 700; margin: 10px 0; }
-    ul { padding-left: 18px; color: #333; }
-    a.btn {
-      display: inline-block; margin-top: 12px; text-decoration: none;
-      padding: 12px 14px; border-radius: 10px; background: #111; color: #fff; font-weight: 700;
+    .title { font-size: 18px; font-weight: 800; margin: 0 0 6px; }
+    .subtitle { margin: 0 0 10px; color: #333; }
+    .meta { font-size: 14px; color:#333; margin: 10px 0 12px; }
+    .meta div { margin: 4px 0; }
+    .price { font-size: 22px; font-weight: 900; margin: 10px 0 6px; }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: #111;
+      color: #fff;
+      font-weight: 800;
     }
-    .note { margin-top: 18px; font-size: 14px; color: #555; }
+    .btn.secondary { background:#2b2b2b; }
+    .note { margin-top: 18px; font-size: 13px; color:#555; }
+    .tag { display:inline-block; font-size:12px; padding: 4px 8px; border-radius:999px; background:#eef0f7; margin-bottom:10px; }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <h1>Select an Offer</h1>
-    <p>Pick the package you want. You’ll be taken to a secure checkout, then redirected to the learning app.</p>
+    <header>
+      <h1>Select an Offer</h1>
+      <p>Choose what you want, pay securely, then continue to the Base44 app.</p>
+    </header>
 
     <div class="grid">
+
+      <!-- 1) German Language Lesson -->
       <div class="card">
-        <h2>Basic</h2>
-        <div class="price">$XX</div>
-        <ul>
-          <li>Feature 1</li>
-          <li>Feature 2</li>
-          <li>Feature 3</li>
-        </ul>
-        <!-- Replace this with your Stripe Payment Link -->
-        <a class="btn" href="https://buy.stripe.com/REPLACE_BASIC_LINK">Choose Basic</a>
+        <div class="tag">Language</div>
+        <div class="title">German Language Lesson</div>
+        <p class="subtitle">First Trial — Topic of Choice</p>
+
+        <div class="price">€17.68</div>
+
+        <div class="meta">
+          <div><b>Delivery:</b> 5-day delivery</div>
+          <div><b>Duration:</b> 40 minutes</div>
+          <div><b>Lessons:</b> 1</div>
+        </div>
+
+        <!-- Replace with your Stripe Payment Link for this offer -->
+        <a class="btn" href="https://buy.stripe.com/REPLACE_GERMAN_TRIAL">Pay & Continue</a>
       </div>
 
+      <!-- 2) Yoga -->
       <div class="card">
-        <h2>Standard</h2>
-        <div class="price">$XX</div>
-        <ul>
-          <li>Feature 1</li>
-          <li>Feature 2</li>
-          <li>Feature 3</li>
-        </ul>
-        <!-- Replace this with your Stripe Payment Link -->
-        <a class="btn" href="https://buy.stripe.com/REPLACE_STANDARD_LINK">Choose Standard</a>
+        <div class="tag">Wellness</div>
+        <div class="title">Yoga</div>
+        <p class="subtitle">Yoga class that fits your needs</p>
+
+        <div class="price">€8.84</div>
+
+        <div class="meta">
+          <div><b>Delivery:</b> 3-day delivery</div>
+          <div><b>Duration:</b> 30 minutes</div>
+          <div><b>Lessons:</b> 1</div>
+        </div>
+
+        <!-- Replace with your Stripe Payment Link for this offer -->
+        <a class="btn" href="https://buy.stripe.com/REPLACE_YOGA">Pay & Continue</a>
       </div>
 
+      <!-- 3) Nutrition Live Coaching -->
       <div class="card">
-        <h2>Premium</h2>
-        <div class="price">$XX</div>
-        <ul>
-          <li>Feature 1</li>
-          <li>Feature 2</li>
-          <li>Feature 3</li>
-        </ul>
-        <!-- Replace this with your Stripe Payment Link -->
-        <a class="btn" href="https://buy.stripe.com/REPLACE_PREMIUM_LINK">Choose Premium</a>
+        <div class="tag">Coaching</div>
+        <div class="title">Nutrition Live Coaching</div>
+        <p class="subtitle">First 1 to 1 Video Call (35 min)</p>
+
+        <div class="price">€22.10</div>
+
+        <div class="meta">
+          <div><b>Description:</b> I will make you reach your goals and never fall back again. I support you 24h via WhatsApp.</div>
+          <div><b>Delivery:</b> 4-day delivery</div>
+          <div><b>Duration:</b> 35 minutes</div>
+          <div><b>Calls:</b> 1</div>
+        </div>
+
+        <!-- Replace with your Stripe Payment Link for this offer -->
+        <a class="btn" href="https://buy.stripe.com/REPLACE_NUTRITION">Pay & Continue</a>
       </div>
+
+      <!-- 4) Alemán para hispanohablantes -->
+      <div class="card">
+        <div class="tag">Idioma</div>
+        <div class="title">Alemán para hispanohablantes</div>
+        <p class="subtitle">Nos vamos a conocer y aprobar tu nivel de alemán.</p>
+
+        <div class="price">€22.10</div>
+
+        <div class="meta">
+          <div><b>Delivery:</b> 3-day delivery</div>
+          <div><b>Duration:</b> 35 minutes</div>
+          <div><b>Lessons:</b> 1</div>
+        </div>
+
+        <!-- Replace with your Stripe Payment Link for this offer -->
+        <a class="btn" href="https://buy.stripe.com/REPLACE_SPANISH_GERMAN">Pagar y continuar</a>
+      </div>
+
+      <!-- 5) Trips Plan -->
+      <div class="card">
+        <div class="tag">Travel</div>
+        <div class="title">Trips Plan</div>
+        <p class="subtitle">According to your needs</p>
+
+        <div class="price">€—</div>
+
+        <div class="meta">
+          <div><b>Description:</b> 30–40 min video or phone call or WhatsApp chat and includes maps</div>
+          <div><b>Delivery:</b> 3-day delivery</div>
+          <div><b>Duration:</b> 30–40 minutes</div>
+        </div>
+
+        <!-- Replace with your Stripe Payment Link for this offer (set your price in Stripe) -->
+        <a class="btn" href="https://buy.stripe.com/REPLACE_TRIPS_PLAN">Pay & Continue</a>
+      </div>
+
+      <!-- 6) German and English Speaking Assistance -->
+      <div class="card">
+        <div class="tag">Assistance</div>
+        <div class="title">German & English Speaking Assistance</div>
+        <p class="subtitle">1 Hour Assistance — According to your needs</p>
+
+        <div class="price">€22.10</div>
+
+        <div class="meta">
+          <div><b>Includes:</b> 20 messages • 1 hour of work • Content writing • Live chat • Appointment setting • Summary report</div>
+          <div><b>Delivery:</b> 3-day delivery</div>
+          <div><b>Duration:</b> 60 minutes</div>
+        </div>
+
+        <!-- Replace with your Stripe Payment Link for this offer -->
+        <a class="btn" href="https://buy.stripe.com/REPLACE_ASSISTANCE">Pay & Continue</a>
+      </div>
+
+      <!-- 7) German UGC creator for Instagram -->
+      <div class="card">
+        <div class="tag">UGC</div>
+        <div class="title">German UGC Creator for Instagram</div>
+        <p class="subtitle">According to your needs</p>
+
+        <div class="price">€44.21</div>
+
+        <div class="meta">
+          <div><b>Description:</b> I will make you reach your goals and never fall back again. I support you 24h via WhatsApp.</div>
+          <div><b>Delivery:</b> 10-day delivery</div>
+          <div><b>Duration:</b> 30–40 minutes</div>
+          <div><b>Video:</b> 1</div>
+        </div>
+
+        <!-- Replace with your Stripe Payment Link for this offer -->
+        <a class="btn" href="https://buy.stripe.com/REPLACE_UGC">Pay & Continue</a>
+      </div>
+
     </div>
 
     <div class="note">
-      Payments are processed securely. If you have any trouble, contact us and we’ll help right away.
+      After payment, you’ll be sent to a confirmation page and then to the Base44 app.
+      If you have any issues, contact us and we’ll help.
     </div>
   </div>
 </body>
