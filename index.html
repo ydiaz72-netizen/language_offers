@@ -8,7 +8,6 @@
 <style>
 :root{
   --bg:#0b0f1a;
-  --surface:rgba(255,255,255,0.08);
   --border:rgba(255,255,255,0.15);
   --text:rgba(255,255,255,0.92);
   --muted:rgba(255,255,255,0.65);
@@ -35,6 +34,7 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:16px;
   padding:20px 24px;
   border-radius:22px;
   border:1px solid var(--border);
@@ -48,42 +48,59 @@ header{
   display:flex;
   align-items:center;
   gap:18px;
+  min-width: 0;
 }
 
 .brand img{
-  width:90px;              /* Strong branding size */
+  width:90px;
   height:90px;
   object-fit:cover;
   border-radius:22px;
+  flex: 0 0 auto;
+}
+
+.brandText{
+  min-width:0;
 }
 
 .brandText h1{
   margin:0;
-  font-size:22px;          /* Slightly bigger title */
+  font-size:22px;
   font-weight:900;
-  letter-spacing:.5px;
+  letter-spacing:.4px;
+  line-height:1.15;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .brandText p{
-  margin:5px 0 0;
+  margin:6px 0 0;
   font-size:14px;
   color:var(--muted);
+  line-height:1.35;
 }
 
 .headerRight{
   text-align:right;
+  min-width: 0;
 }
 
 .headerRight .title{
   font-size:22px;
   font-weight:900;
   margin:0;
+  line-height:1.15;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .headerRight .sub{
   margin-top:6px;
   font-size:14px;
   color:var(--muted);
+  line-height:1.35;
 }
 
 .grid{
@@ -104,9 +121,7 @@ header{
   transition:transform .15s ease;
 }
 
-.card:hover{
-  transform:translateY(-4px);
-}
+.card:hover{ transform:translateY(-4px); }
 
 .tag{
   display:inline-flex;
@@ -117,18 +132,21 @@ header{
   border-radius:999px;
   background:rgba(255,255,255,0.12);
   margin-bottom:12px;
+  width: fit-content;
 }
 
 .title{
   font-size:19px;
   font-weight:900;
   margin:0 0 8px;
+  line-height:1.2;
 }
 
 .subtitle{
   font-size:14px;
   color:var(--muted);
   margin-bottom:10px;
+  line-height:1.4;
 }
 
 .price{
@@ -144,33 +162,107 @@ header{
   margin-bottom:16px;
 }
 
-.meta div{margin:4px 0;}
+.meta div{ margin:4px 0; }
 
 .btn{
-  margin-top:auto; /* keeps buttons aligned */
+  margin-top:auto;
   display:flex;
   justify-content:center;
   align-items:center;
   text-decoration:none;
   padding:14px;
   border-radius:16px;
-  background:white;
+  background:#fff;
   color:var(--btnText);
   font-weight:900;
   font-size:14px;
   transition:all .15s ease;
 }
 
-.btn:hover{
-  transform:translateY(-2px);
-  opacity:.95;
-}
+.btn:hover{ transform:translateY(-2px); opacity:.95; }
 
 .note{
   margin-top:28px;
   text-align:center;
   font-size:14px;
   color:var(--muted);
+  line-height:1.5;
+}
+
+/* =========================
+   Mobile Optimization
+   ========================= */
+@media (max-width: 720px){
+  body{ padding:16px; }
+
+  header{
+    flex-direction:column;
+    align-items:stretch;
+    text-align:left;
+    padding:16px;
+    gap:12px;
+  }
+
+  .brand{
+    width:100%;
+    justify-content:flex-start;
+    gap:14px;
+  }
+
+  .brand img{
+    width:72px;
+    height:72px;
+    border-radius:18px;
+  }
+
+  .brandText h1{
+    font-size:18px;
+    white-space:normal;
+    overflow:visible;
+    text-overflow:clip;
+  }
+
+  .brandText p{
+    font-size:13px;
+  }
+
+  .headerRight{
+    width:100%;
+    text-align:left;
+  }
+
+  .headerRight .title{
+    font-size:18px;
+    white-space:normal;
+    overflow:visible;
+    text-overflow:clip;
+  }
+
+  .headerRight .sub{
+    font-size:13px;
+    margin-top:4px;
+  }
+
+  .grid{
+    grid-template-columns: 1fr;
+    gap:16px;
+  }
+
+  .card{
+    padding:18px;
+    border-radius:20px;
+  }
+
+  .title{ font-size:18px; }
+  .price{ font-size:24px; }
+  .meta{ font-size:13px; }
+  .btn{ padding:14px; }
+}
+
+@media (max-width: 380px){
+  .brand img{ width:64px; height:64px; }
+  .brandText h1{ font-size:17px; }
+  .headerRight .title{ font-size:17px; }
 }
 </style>
 </head>
@@ -182,10 +274,11 @@ header{
   <div class="brand">
     <img src="logo.png" alt="Logo">
     <div class="brandText">
-      <h1>Erika Müeller</h1>
-      <p>Your Personal Assitant</p>
+      <h1>Your Brand Name</h1>
+      <p>Language learning & coaching</p>
     </div>
   </div>
+
   <div class="headerRight">
     <p class="title">Select an Offer</p>
     <p class="sub">Secure checkout • Instant access</p>
@@ -194,96 +287,96 @@ header{
 
 <div class="grid">
 
-<div class="card">
-  <div class="tag">🗣️ Language</div>
-  <h2 class="title">German Language Lesson</h2>
-  <div class="subtitle">First Trial — Topic of Choice</div>
-  <div class="price">€17.68</div>
-  <div class="meta">
-    <div>Delivery: 5 days</div>
-    <div>Duration: 40 minutes</div>
-    <div>Lessons: 1</div>
+  <div class="card">
+    <div class="tag">🗣️ Language</div>
+    <h2 class="title">German Language Lesson</h2>
+    <div class="subtitle">First Trial — Topic of Choice</div>
+    <div class="price">€17.68</div>
+    <div class="meta">
+      <div>Delivery: 5 days</div>
+      <div>Duration: 40 minutes</div>
+      <div>Lessons: 1</div>
+    </div>
+    <a class="btn" href="https://buy.stripe.com/REPLACE_GERMAN_TRIAL">Pay & Continue →</a>
   </div>
-  <a class="btn" href="https://buy.stripe.com/REPLACE_GERMAN_TRIAL">Pay & Continue →</a>
-</div>
 
-<div class="card">
-  <div class="tag">🧘 Wellness</div>
-  <h2 class="title">Yoga</h2>
-  <div class="subtitle">Yoga class that fits your needs</div>
-  <div class="price">€8.84</div>
-  <div class="meta">
-    <div>Delivery: 3 days</div>
-    <div>Duration: 30 minutes</div>
-    <div>Lessons: 1</div>
+  <div class="card">
+    <div class="tag">🧘 Wellness</div>
+    <h2 class="title">Yoga</h2>
+    <div class="subtitle">Yoga class that fits your needs</div>
+    <div class="price">€8.84</div>
+    <div class="meta">
+      <div>Delivery: 3 days</div>
+      <div>Duration: 30 minutes</div>
+      <div>Lessons: 1</div>
+    </div>
+    <a class="btn" href="https://buy.stripe.com/REPLACE_YOGA">Pay & Continue →</a>
   </div>
-  <a class="btn" href="https://buy.stripe.com/REPLACE_YOGA">Pay & Continue →</a>
-</div>
 
-<div class="card">
-  <div class="tag">🥗 Coaching</div>
-  <h2 class="title">Nutrition Live Coaching</h2>
-  <div class="subtitle">1 to 1 Video Call (35 min)</div>
-  <div class="price">€22.10</div>
-  <div class="meta">
-    <div>Delivery: 4 days</div>
-    <div>Duration: 35 minutes</div>
-    <div>WhatsApp support included</div>
+  <div class="card">
+    <div class="tag">🥗 Coaching</div>
+    <h2 class="title">Nutrition Live Coaching</h2>
+    <div class="subtitle">1 to 1 Video Call (35 min)</div>
+    <div class="price">€22.10</div>
+    <div class="meta">
+      <div>Delivery: 4 days</div>
+      <div>Duration: 35 minutes</div>
+      <div>WhatsApp support included</div>
+    </div>
+    <a class="btn" href="https://buy.stripe.com/REPLACE_NUTRITION">Pay & Continue →</a>
   </div>
-  <a class="btn" href="https://buy.stripe.com/REPLACE_NUTRITION">Pay & Continue →</a>
-</div>
 
-<div class="card">
-  <div class="tag">🇪🇸 Idioma</div>
-  <h2 class="title">Alemán para hispanohablantes</h2>
-  <div class="price">€22.10</div>
-  <div class="meta">
-    <div>Delivery: 3 days</div>
-    <div>Duration: 35 minutes</div>
-    <div>1 lesson</div>
+  <div class="card">
+    <div class="tag">🇪🇸 Idioma</div>
+    <h2 class="title">Alemán para hispanohablantes</h2>
+    <div class="price">€22.10</div>
+    <div class="meta">
+      <div>Delivery: 3 days</div>
+      <div>Duration: 35 minutes</div>
+      <div>1 lesson</div>
+    </div>
+    <a class="btn" href="https://buy.stripe.com/REPLACE_SPANISH_GERMAN">Pagar y continuar →</a>
   </div>
-  <a class="btn" href="https://buy.stripe.com/REPLACE_SPANISH_GERMAN">Pagar y continuar →</a>
-</div>
 
-<div class="card">
-  <div class="tag">🧭 Travel</div>
-  <h2 class="title">Trips Plan</h2>
-  <div class="subtitle">According to your needs</div>
-  <div class="meta">
-    <div>30–40 min call</div>
-    <div>Includes maps</div>
+  <div class="card">
+    <div class="tag">🧭 Travel</div>
+    <h2 class="title">Trips Plan</h2>
+    <div class="subtitle">According to your needs</div>
+    <div class="meta">
+      <div>30–40 min call</div>
+      <div>Includes maps</div>
+    </div>
+    <a class="btn" href="https://buy.stripe.com/REPLACE_TRIPS_PLAN">Pay & Continue →</a>
   </div>
-  <a class="btn" href="https://buy.stripe.com/REPLACE_TRIPS_PLAN">Pay & Continue →</a>
-</div>
 
-<div class="card">
-  <div class="tag">💬 Assistance</div>
-  <h2 class="title">German & English Assistance</h2>
-  <div class="price">€22.10</div>
-  <div class="meta">
-    <div>1 hour work</div>
-    <div>20 messages</div>
-    <div>Content writing & support</div>
+  <div class="card">
+    <div class="tag">💬 Assistance</div>
+    <h2 class="title">German & English Assistance</h2>
+    <div class="price">€22.10</div>
+    <div class="meta">
+      <div>1 hour work</div>
+      <div>20 messages</div>
+      <div>Content writing & support</div>
+    </div>
+    <a class="btn" href="https://buy.stripe.com/REPLACE_ASSISTANCE">Pay & Continue →</a>
   </div>
-  <a class="btn" href="https://buy.stripe.com/REPLACE_ASSISTANCE">Pay & Continue →</a>
-</div>
 
-<div class="card">
-  <div class="tag">🎥 UGC</div>
-  <h2 class="title">German UGC Creator</h2>
-  <div class="price">€44.21</div>
-  <div class="meta">
-    <div>1 video</div>
-    <div>30–40 min</div>
-    <div>10-day delivery</div>
+  <div class="card">
+    <div class="tag">🎥 UGC</div>
+    <h2 class="title">German UGC Creator</h2>
+    <div class="price">€44.21</div>
+    <div class="meta">
+      <div>1 video</div>
+      <div>30–40 min</div>
+      <div>10-day delivery</div>
+    </div>
+    <a class="btn" href="https://buy.stripe.com/REPLACE_UGC">Pay & Continue →</a>
   </div>
-  <a class="btn" href="https://buy.stripe.com/REPLACE_UGC">Pay & Continue →</a>
-</div>
 
 </div>
 
 <div class="note">
-After payment you’ll receive email with login instructions.
+After payment you’ll be redirected to the confirmation page and then to the Base44 app.
 </div>
 
 </div>
