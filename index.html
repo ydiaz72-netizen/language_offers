@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Choose Your Language Learning Offer</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 24px; background: #f6f7fb; }
+    .wrap { max-width: 900px; margin: 0 auto; }
+    h1 { margin: 0 0 8px; }
+    p { color: #444; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 20px; }
+    .card { background: white; border-radius: 14px; padding: 18px; box-shadow: 0 6px 18px rgba(0,0,0,.08); }
+    .price { font-size: 26px; font-weight: 700; margin: 10px 0; }
+    ul { padding-left: 18px; color: #333; }
+    a.btn {
+      display: inline-block; margin-top: 12px; text-decoration: none;
+      padding: 12px 14px; border-radius: 10px; background: #111; color: #fff; font-weight: 700;
+    }
+    .note { margin-top: 18px; font-size: 14px; color: #555; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Select an Offer</h1>
+    <p>Pick the package you want. You’ll be taken to a secure checkout, then redirected to the learning app.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Basic</h2>
+        <div class="price">$XX</div>
+        <ul>
+          <li>Feature 1</li>
+          <li>Feature 2</li>
+          <li>Feature 3</li>
+        </ul>
+        <!-- Replace this with your Stripe Payment Link -->
+        <a class="btn" href="https://buy.stripe.com/REPLACE_BASIC_LINK">Choose Basic</a>
+      </div>
+
+      <div class="card">
+        <h2>Standard</h2>
+        <div class="price">$XX</div>
+        <ul>
+          <li>Feature 1</li>
+          <li>Feature 2</li>
+          <li>Feature 3</li>
+        </ul>
+        <!-- Replace this with your Stripe Payment Link -->
+        <a class="btn" href="https://buy.stripe.com/REPLACE_STANDARD_LINK">Choose Standard</a>
+      </div>
+
+      <div class="card">
+        <h2>Premium</h2>
+        <div class="price">$XX</div>
+        <ul>
+          <li>Feature 1</li>
+          <li>Feature 2</li>
+          <li>Feature 3</li>
+        </ul>
+        <!-- Replace this with your Stripe Payment Link -->
+        <a class="btn" href="https://buy.stripe.com/REPLACE_PREMIUM_LINK">Choose Premium</a>
+      </div>
+    </div>
+
+    <div class="note">
+      Payments are processed securely. If you have any trouble, contact us and we’ll help right away.
+    </div>
+  </div>
+</body>
+</html>
