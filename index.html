@@ -4,176 +4,391 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Choose an Offer</title>
+
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 24px; background: #f6f7fb; color:#111; }
-    .wrap { max-width: 980px; margin: 0 auto; }
-    header { margin-bottom: 18px; }
-    h1 { margin: 0 0 8px; font-size: 28px; }
-    p { margin: 0; color: #444; line-height: 1.4; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 18px; }
-    .card { background: white; border-radius: 14px; padding: 18px; box-shadow: 0 6px 18px rgba(0,0,0,.08); }
-    .title { font-size: 18px; font-weight: 800; margin: 0 0 6px; }
-    .subtitle { margin: 0 0 10px; color: #333; }
-    .meta { font-size: 14px; color:#333; margin: 10px 0 12px; }
-    .meta div { margin: 4px 0; }
-    .price { font-size: 22px; font-weight: 900; margin: 10px 0 6px; }
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-      padding: 12px 14px;
-      border-radius: 10px;
-      background: #111;
-      color: #fff;
-      font-weight: 800;
+    :root{
+      --bg: #0b0f1a;
+      --surface: rgba(255,255,255,0.08);
+      --surface-2: rgba(255,255,255,0.10);
+      --border: rgba(255,255,255,0.14);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --muted2: rgba(255,255,255,0.58);
+
+      --brand1:#7c3aed;   /* purple */
+      --brand2:#22d3ee;   /* cyan */
+      --brand3:#fb7185;   /* pink */
+
+      --btn:#ffffff;
+      --btnText:#0b0f1a;
     }
-    .btn.secondary { background:#2b2b2b; }
-    .note { margin-top: 18px; font-size: 13px; color:#555; }
-    .tag { display:inline-block; font-size:12px; padding: 4px 8px; border-radius:999px; background:#eef0f7; margin-bottom:10px; }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 10% 10%, rgba(124,58,237,.35), transparent 60%),
+        radial-gradient(800px 500px at 90% 20%, rgba(34,211,238,.28), transparent 60%),
+        radial-gradient(700px 450px at 50% 90%, rgba(251,113,133,.22), transparent 60%),
+        var(--bg);
+      padding: 24px;
+    }
+
+    .wrap{ max-width: 1050px; margin: 0 auto; }
+
+    /* Header */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.06));
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.28);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 220px;
+    }
+
+    /* Logo space */
+    .logo{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px dashed rgba(255,255,255,0.35);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: .5px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .brandText h1{
+      font-size: 16px;
+      margin: 0;
+      letter-spacing: .2px;
+    }
+
+    .brandText p{
+      margin: 2px 0 0;
+      font-size: 13px;
+      color: var(--muted2);
+    }
+
+    .headerRight{
+      text-align:right;
+    }
+
+    .headerRight .title{
+      font-size: 18px;
+      font-weight: 900;
+      margin: 0;
+    }
+    .headerRight .sub{
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: var(--muted2);
+      line-height: 1.35;
+    }
+
+    /* Grid / Cards */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.06));
+      box-shadow: 0 12px 30px rgba(0,0,0,.28);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(400px 140px at 10% 0%, rgba(124,58,237,.18), transparent 70%),
+                  radial-gradient(380px 160px at 90% 0%, rgba(34,211,238,.16), transparent 70%);
+      pointer-events:none;
+    }
+
+    .cardInner{ position: relative; }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .tag .icon{
+      width: 18px;
+      height: 18px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.14);
+      font-size: 12px;
+    }
+
+    .title{
+      font-size: 18px;
+      font-weight: 900;
+      margin: 0 0 6px;
+      letter-spacing: .2px;
+    }
+
+    .subtitle{
+      margin: 0 0 10px;
+      color: var(--muted);
+      line-height: 1.35;
+      font-size: 13.5px;
+    }
+
+    .price{
+      display:flex;
+      align-items: baseline;
+      gap: 8px;
+      margin: 10px 0 4px;
+    }
+    .price strong{
+      font-size: 24px;
+      font-weight: 950;
+    }
+    .price span{
+      font-size: 12px;
+      color: var(--muted2);
+    }
+
+    .meta{
+      font-size: 13px;
+      color: var(--muted);
+      margin: 10px 0 12px;
+      line-height: 1.5;
+    }
+    .meta div{ margin: 4px 0; }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      width: 100%;
+      text-decoration:none;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,255,255,0.86));
+      color: var(--btnText);
+      font-weight: 900;
+      border: 1px solid rgba(255,255,255,0.55);
+      transition: transform .12s ease, opacity .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); opacity: .95; }
+
+    .note{
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--muted2);
+      text-align:center;
+    }
+
+    .tiny{
+      font-size: 12px;
+      color: var(--muted2);
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
+
+    <!-- Header with Logo Space -->
     <header>
-      <h1>Select an Offer</h1>
-      <p>Choose what you want, pay securely, then continue to the Base44 app.</p>
+      <div class="brand">
+        <!-- Replace this div with an <img> later if you want -->
+        <div class="logo">LOGO</div>
+
+        <div class="brandText">
+          <h1>Your Brand Name</h1>
+          <p>Language learning & coaching</p>
+        </div>
+      </div>
+
+      <div class="headerRight">
+        <p class="title">Select an Offer</p>
+        <p class="sub">Pay securely, then continue to the Base44 app.</p>
+      </div>
     </header>
 
     <div class="grid">
 
       <!-- 1) German Language Lesson -->
       <div class="card">
-        <div class="tag">Language</div>
-        <div class="title">German Language Lesson</div>
-        <p class="subtitle">First Trial — Topic of Choice</p>
+        <div class="cardInner">
+          <div class="tag"><span class="icon">🗣️</span> Language</div>
+          <h2 class="title">German Language Lesson</h2>
+          <p class="subtitle">First Trial — Topic of Choice</p>
 
-        <div class="price">€17.68</div>
+          <div class="price"><strong>€17.68</strong><span>one-time</span></div>
 
-        <div class="meta">
-          <div><b>Delivery:</b> 5-day delivery</div>
-          <div><b>Duration:</b> 40 minutes</div>
-          <div><b>Lessons:</b> 1</div>
+          <div class="meta">
+            <div><b>Delivery:</b> 5-day delivery</div>
+            <div><b>Duration:</b> 40 minutes</div>
+            <div><b>Lessons:</b> 1</div>
+          </div>
+
+          <a class="btn" href="https://buy.stripe.com/REPLACE_GERMAN_TRIAL">Pay & Continue →</a>
         </div>
-
-        <!-- Replace with your Stripe Payment Link for this offer -->
-        <a class="btn" href="https://buy.stripe.com/REPLACE_GERMAN_TRIAL">Pay & Continue</a>
       </div>
 
       <!-- 2) Yoga -->
       <div class="card">
-        <div class="tag">Wellness</div>
-        <div class="title">Yoga</div>
-        <p class="subtitle">Yoga class that fits your needs</p>
+        <div class="cardInner">
+          <div class="tag"><span class="icon">🧘</span> Wellness</div>
+          <h2 class="title">Yoga</h2>
+          <p class="subtitle">Yoga class that fits your needs</p>
 
-        <div class="price">€8.84</div>
+          <div class="price"><strong>€8.84</strong><span>one-time</span></div>
 
-        <div class="meta">
-          <div><b>Delivery:</b> 3-day delivery</div>
-          <div><b>Duration:</b> 30 minutes</div>
-          <div><b>Lessons:</b> 1</div>
+          <div class="meta">
+            <div><b>Delivery:</b> 3-day delivery</div>
+            <div><b>Duration:</b> 30 minutes</div>
+            <div><b>Lessons:</b> 1</div>
+          </div>
+
+          <a class="btn" href="https://buy.stripe.com/REPLACE_YOGA">Pay & Continue →</a>
         </div>
-
-        <!-- Replace with your Stripe Payment Link for this offer -->
-        <a class="btn" href="https://buy.stripe.com/REPLACE_YOGA">Pay & Continue</a>
       </div>
 
       <!-- 3) Nutrition Live Coaching -->
       <div class="card">
-        <div class="tag">Coaching</div>
-        <div class="title">Nutrition Live Coaching</div>
-        <p class="subtitle">First 1 to 1 Video Call (35 min)</p>
+        <div class="cardInner">
+          <div class="tag"><span class="icon">🥗</span> Coaching</div>
+          <h2 class="title">Nutrition Live Coaching</h2>
+          <p class="subtitle">First 1 to 1 Video Call (35 min)</p>
 
-        <div class="price">€22.10</div>
+          <div class="price"><strong>€22.10</strong><span>one-time</span></div>
 
-        <div class="meta">
-          <div><b>Description:</b> I will make you reach your goals and never fall back again. I support you 24h via WhatsApp.</div>
-          <div><b>Delivery:</b> 4-day delivery</div>
-          <div><b>Duration:</b> 35 minutes</div>
-          <div><b>Calls:</b> 1</div>
+          <div class="meta">
+            <div><b>Description:</b> I will make you reach your goals and never fall back again. I support you 24h via WhatsApp.</div>
+            <div><b>Delivery:</b> 4-day delivery</div>
+            <div><b>Duration:</b> 35 minutes</div>
+            <div><b>Calls:</b> 1</div>
+          </div>
+
+          <a class="btn" href="https://buy.stripe.com/REPLACE_NUTRITION">Pay & Continue →</a>
         </div>
-
-        <!-- Replace with your Stripe Payment Link for this offer -->
-        <a class="btn" href="https://buy.stripe.com/REPLACE_NUTRITION">Pay & Continue</a>
       </div>
 
       <!-- 4) Alemán para hispanohablantes -->
       <div class="card">
-        <div class="tag">Idioma</div>
-        <div class="title">Alemán para hispanohablantes</div>
-        <p class="subtitle">Nos vamos a conocer y aprobar tu nivel de alemán.</p>
+        <div class="cardInner">
+          <div class="tag"><span class="icon">🇪🇸</span> Idioma</div>
+          <h2 class="title">Alemán para hispanohablantes</h2>
+          <p class="subtitle">Nos vamos a conocer y aprobar tu nivel de alemán.</p>
 
-        <div class="price">€22.10</div>
+          <div class="price"><strong>€22.10</strong><span>one-time</span></div>
 
-        <div class="meta">
-          <div><b>Delivery:</b> 3-day delivery</div>
-          <div><b>Duration:</b> 35 minutes</div>
-          <div><b>Lessons:</b> 1</div>
+          <div class="meta">
+            <div><b>Delivery:</b> 3-day delivery</div>
+            <div><b>Duration:</b> 35 minutes</div>
+            <div><b>Lessons:</b> 1</div>
+          </div>
+
+          <a class="btn" href="https://buy.stripe.com/REPLACE_SPANISH_GERMAN">Pagar y continuar →</a>
         </div>
-
-        <!-- Replace with your Stripe Payment Link for this offer -->
-        <a class="btn" href="https://buy.stripe.com/REPLACE_SPANISH_GERMAN">Pagar y continuar</a>
       </div>
 
       <!-- 5) Trips Plan -->
       <div class="card">
-        <div class="tag">Travel</div>
-        <div class="title">Trips Plan</div>
-        <p class="subtitle">According to your needs</p>
+        <div class="cardInner">
+          <div class="tag"><span class="icon">🧭</span> Travel</div>
+          <h2 class="title">Trips Plan</h2>
+          <p class="subtitle">According to your needs</p>
 
-        <div class="price">€—</div>
+          <div class="price"><strong>€—</strong><span>set your price</span></div>
 
-        <div class="meta">
-          <div><b>Description:</b> 30–40 min video or phone call or WhatsApp chat and includes maps</div>
-          <div><b>Delivery:</b> 3-day delivery</div>
-          <div><b>Duration:</b> 30–40 minutes</div>
+          <div class="meta">
+            <div><b>Description:</b> 30–40 min video or phone call or WhatsApp chat and includes maps</div>
+            <div><b>Delivery:</b> 3-day delivery</div>
+            <div><b>Duration:</b> 30–40 minutes</div>
+          </div>
+
+          <a class="btn" href="https://buy.stripe.com/REPLACE_TRIPS_PLAN">Pay & Continue →</a>
         </div>
-
-        <!-- Replace with your Stripe Payment Link for this offer (set your price in Stripe) -->
-        <a class="btn" href="https://buy.stripe.com/REPLACE_TRIPS_PLAN">Pay & Continue</a>
       </div>
 
-      <!-- 6) German and English Speaking Assistance -->
+      <!-- 6) Assistance -->
       <div class="card">
-        <div class="tag">Assistance</div>
-        <div class="title">German & English Speaking Assistance</div>
-        <p class="subtitle">1 Hour Assistance — According to your needs</p>
+        <div class="cardInner">
+          <div class="tag"><span class="icon">💬</span> Assistance</div>
+          <h2 class="title">German & English Speaking Assistance</h2>
+          <p class="subtitle">1 Hour Assistance — According to your needs</p>
 
-        <div class="price">€22.10</div>
+          <div class="price"><strong>€22.10</strong><span>one-time</span></div>
 
-        <div class="meta">
-          <div><b>Includes:</b> 20 messages • 1 hour of work • Content writing • Live chat • Appointment setting • Summary report</div>
-          <div><b>Delivery:</b> 3-day delivery</div>
-          <div><b>Duration:</b> 60 minutes</div>
+          <div class="meta">
+            <div><b>Includes:</b> 20 messages • 1 hour of work • Content writing • Live chat • Appointment setting • Summary report</div>
+            <div><b>Delivery:</b> 3-day delivery</div>
+            <div><b>Duration:</b> 60 minutes</div>
+          </div>
+
+          <a class="btn" href="https://buy.stripe.com/REPLACE_ASSISTANCE">Pay & Continue →</a>
         </div>
-
-        <!-- Replace with your Stripe Payment Link for this offer -->
-        <a class="btn" href="https://buy.stripe.com/REPLACE_ASSISTANCE">Pay & Continue</a>
       </div>
 
-      <!-- 7) German UGC creator for Instagram -->
+      <!-- 7) UGC -->
       <div class="card">
-        <div class="tag">UGC</div>
-        <div class="title">German UGC Creator for Instagram</div>
-        <p class="subtitle">According to your needs</p>
+        <div class="cardInner">
+          <div class="tag"><span class="icon">🎥</span> UGC</div>
+          <h2 class="title">German UGC Creator for Instagram</h2>
+          <p class="subtitle">According to your needs</p>
 
-        <div class="price">€44.21</div>
+          <div class="price"><strong>€44.21</strong><span>one-time</span></div>
 
-        <div class="meta">
-          <div><b>Description:</b> I will make you reach your goals and never fall back again. I support you 24h via WhatsApp.</div>
-          <div><b>Delivery:</b> 10-day delivery</div>
-          <div><b>Duration:</b> 30–40 minutes</div>
-          <div><b>Video:</b> 1</div>
+          <div class="meta">
+            <div><b>Description:</b> I will make you reach your goals and never fall back again. I support you 24h via WhatsApp.</div>
+            <div><b>Delivery:</b> 10-day delivery</div>
+            <div><b>Duration:</b> 30–40 minutes</div>
+            <div><b>Video:</b> 1</div>
+          </div>
+
+          <a class="btn" href="https://buy.stripe.com/REPLACE_UGC">Pay & Continue →</a>
         </div>
-
-        <!-- Replace with your Stripe Payment Link for this offer -->
-        <a class="btn" href="https://buy.stripe.com/REPLACE_UGC">Pay & Continue</a>
       </div>
 
     </div>
 
     <div class="note">
-      After payment, you’ll be sent to a confirmation page and then to the Base44 app.
-      If you have any issues, contact us and we’ll help.
+      After payment you’ll be sent to a confirmation page, then to the Base44 app.
     </div>
+
   </div>
 </body>
 </html>
